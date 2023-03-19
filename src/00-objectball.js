@@ -205,3 +205,68 @@ function playerStats(playerName) {
     
 }
 
+function bigShoeRebounds(){
+    const obj = gameObject();
+    const getAllPlayers = {...obj.home.players, ...obj.away.players };
+
+    let biggestShoe = 0;
+    let bigShoeGuy = "nobody";
+
+    for(let player in getAllPlayers) {
+        if (biggestShoe < getAllPlayers[player]["shoe"]) {
+            biggestShoe = getAllPlayers[player]["shoe"];
+            bigShoeGuy = player
+        }
+    }
+    return getAllPlayers[bigShoeGuy]["rebounds"]
+
+}
+
+
+function mostPointsScored(){
+    const obj = gameObject();
+    const getAllPlayers = {...obj.home.players, ...obj.away.players };
+
+    let biggestPoints = 0;
+    let bigPointsGuy = "nobody";
+
+    for(let player in getAllPlayers) {
+        if (biggestPoints < getAllPlayers[player]["points"]) {
+            biggestPoints = getAllPlayers[player]["points"];
+            bigPointsGuy = player
+        }
+    }
+    return bigPointsGuy
+
+}
+
+// console.log(mostPointsScored());
+
+function winningTeam() {
+    const obj = gameObject();
+    let score = 0;
+    for (let player in obj.home.players ){
+        scoreHome += obj.home.players[player]["points"];
+        console.log( obj.home.players[player]["points"]);
+    }
+
+    for (let player in obj.away.players ){
+        scoreAway += obj.away.players[player]["points"];
+        console.log( obj.away.players[player]["points"]);
+    }
+
+    if (scoreHome > scoreAway) {
+        return "home wins";
+    }
+    else if (scoreAway > scoreHome) {
+        
+        return "away wins";
+
+    }
+    else{
+        return "tie";
+    }
+
+}
+
+
